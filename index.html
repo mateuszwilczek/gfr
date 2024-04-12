@@ -1,0 +1,86 @@
+<html>
+
+<head>
+	<title>GFR</title>
+</head>
+
+
+<body onload="calculateGFRFromYear()">
+
+<div class="outer">
+<div>
+	<label for="year">Geburtsjahr</label>
+	<input type="number" id="year" min="20" onchange="calculateGFRFromYear()" value="1960" />
+</div>
+
+<div>
+	<label for="age">Alter</label>
+	<input type="number" id="age" step="1" min="18" onchange="calculateGFRFromAge()" />
+</div>
+
+<div>
+	<label for="scr">Kreatinin (mg/dl)</label>
+	<input type="number" id="scr" step="0.1" min="0.1" onchange="calculateGFR()" value="1" />
+</div>
+
+<div>
+<span>Geschlecht:</span>
+<span>
+	<input type="radio" id="female" name="sex" value="f" checked onchange="calculateGFR()" />
+	<label for="female">weiblich</label>
+</span>
+<span>
+	<input type="radio" id="male" name="sex" value="m" onchange="calculateGFR()" />
+	<label for="male">männlich</label>
+</span>
+</div>
+
+<div>
+	GFR: <span id="gfr" class="result"></span> ml/min/1.73 m<sup>2</sup>
+</div>
+
+</div>
+
+
+<style>
+html {
+	font-family: sans-serif, Arial;
+	font-size: 1.5rem;
+}
+input {
+	font-size: 1em;
+}
+div.outer {
+	margin: 1rem;
+}
+.result {
+	font-weight: bold;
+}
+</style>
+
+<script>
+function calculateGFR() {
+	const current_year = new Date().getFullYear();
+	const age = current_year - document.getElementById("year").value;
+	const sex = document.querySelector("input[name='sex']:checked").value;
+	const scr = document.getElementById("scr").value;
+	const kappa = (sex == "f") ? 0.7 : 0.9;
+	const alpha = (sex == "f") ? -0.329 : -0.411;	
+	const multiplier = (sex == "f") ? 1.018 : 1;
+	document.getElementById('gfr').innerHTML = Math.round(141 * (Math.min(scr/kappa, 1) ** alpha) * (Math.max(scr/kappa, 1) ** -1.209) * (0.993 ** age) * multiplier);
+};
+function calculateGFRFromYear() {
+	const current_year = new Date().getFullYear();
+	document.getElementById('age').value = current_year - document.getElementById("year").value;
+	calculateGFR();
+}
+function calculateGFRFromAge() {
+	const current_year = new Date().getFullYear();
+	document.getElementById('year').value = current_year - document.getElementById("age").value;
+	calculateGFR();
+};
+</script>
+
+</body>
+
+</html>
