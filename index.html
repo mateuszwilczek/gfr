@@ -9,6 +9,7 @@
 <body onload="calculateGFRFromYear()">
 
 <div class="outer">
+<div class="inner">
 <div>
 	<label for="year">Geburtsjahr</label>
 	<input type="number" id="year" min="20" onchange="calculateGFRFromYear()" value="1960" />
@@ -20,12 +21,13 @@
 </div>
 
 <div>
-	<label for="scr">Kreatinin (mg/dl)</label>
+	<label for="scr">Kreatinin</label>
 	<input type="number" id="scr" step="0.1" min="0.1" onchange="calculateGFR()" value="1" />
+	mg/dl
 </div>
 
 <div>
-<span>Geschlecht:</span>
+<span>Geschlecht</span>
 <span>
 	<input type="radio" id="female" name="sex" value="f" checked onchange="calculateGFR()" />
 	<label for="female">weiblich</label>
@@ -35,27 +37,53 @@
 	<label for="male">männlich</label>
 </span>
 </div>
-
 <div>
-	GFR: <span id="gfr" class="result"></span> ml/min/1.73 m<sup>2</sup>
+	GFR <span id="gfr" class="result"></span> ml/min/1.73 m<sup>2</sup>
 </div>
 
+<div class="footer">
+	Berechnung nach CKD-EPI 2009 Formel
 </div>
-
+<div class="copyright">
+	Copyright © 2024 Mateusz Wilczek
+</div>
+</div>
+</div>
 
 <style>
+:root {
+	--font-stack: system-ui, sans-serif;
+}
 html {
-	font-family: sans-serif, Arial;
+	font-family: var(--font-stack);
+	font-weight: normal;
 	font-size: 1.5rem;
 }
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:active { text-decoration: underline; }
+
 input {
-	font-size: 1em;
+	font-family: var(--font-stack);
+	font-weight: normal;
+	font-size: 1rem;
+	max-width: 4rem;
 }
 div.outer {
 	margin: 1rem;
 }
 .result {
 	font-weight: bold;
+}
+div.footer {
+	font-size: 0.6rem;
+}
+div.copyright {
+	font-size: 0.6rem;
+	margin: 1rem 0rem;
+	color: bbbbbb;
 }
 </style>
 
