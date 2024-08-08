@@ -38,14 +38,21 @@
 </span>
 </div>
 <div>
-	GFR <span id="gfr" class="result"></span> ml/min/1.73 m<sup>2</sup>
+	GFR <span id="gfr" class="result"></span> ml/min/1.73 m²
 </div>
 
 <div class="footer">
-	Berechnung nach CKD-EPI 2009 Formel
+	Berechnung nach
+	<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2763564/">
+	CKD-EPI 2009 Formel
+	</a>
 </div>
 <div class="copyright">
 	Copyright © 2024 Mateusz Wilczek
+	<br>
+	<a href="https://github.com/mateuszwilczek/gfr">
+	Source code
+	</a>
 </div>
 </div>
 </div>
@@ -58,12 +65,8 @@ html {
 	font-family: var(--font-stack);
 	font-weight: normal;
 	font-size: 1.5rem;
+	line-height: 1.7;
 }
-
-a:link { text-decoration: none; }
-a:visited { text-decoration: none; }
-a:hover { text-decoration: underline; }
-a:active { text-decoration: underline; }
 
 input {
 	font-family: var(--font-stack);
@@ -80,8 +83,8 @@ div.outer {
 div.footer {
 	font-size: 0.6rem;
 }
-div.copyright {
-	font-size: 0.6rem;
+div.copyright,div.copyright>a {
+	font-size: 0.5rem;
 	margin: 1rem 0rem;
 	color: bbbbbb;
 }
